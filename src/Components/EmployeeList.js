@@ -4,7 +4,7 @@ import '../Content/EmployeeList.css';
 
 const EmployeeList = ({ employees }) => {
   return (
-    <div>
+    <div className="employee-list-container">
       <h2 className="employee-list-title">Employee List</h2>
       <ul className="employee-list">
         {employees.map((employee, index) => (

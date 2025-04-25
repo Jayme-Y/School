@@ -1,23 +1,21 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import EmployeeForm from './Components/EmployeeForm';
 import EmployeeList from './Components/EmployeeList';
 import EmployeeDetails from './Components/EmployeeDetails';
+import logo from './logo.svg';
 
 function App() {
   const [employees, setEmployees] = useState([]);
   const navigate = useNavigate();
-
-  const saveData = (data) => {
-    localStorage.setItem('employees', JSON.stringify(data));
-  };
+  const contentRef = useRef(null);
 
   const addEmployee = (employee) => {
     setEmployees((prevEmployees) => {
       const updatedEmployees = [...prevEmployees, employee];
-      saveData(updatedEmployees); 
-      return updatedEmployees; 
+      localStorage.setItem('employees', JSON.stringify(updatedEmployees));
+      return updatedEmployees;
     });
   };
 
@@ -36,29 +34,38 @@ function App() {
     addEmployee(employee);
   };
 
+  const handleNavigation = (path) => {
+    navigate(path);
+    if (contentRef.current) {
+      contentRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Employee Form</h1>
+        <img src={logo} className="App-logo" alt="logo" />
+        <h1 className="App-title">Employee Form</h1>
         <nav>
-          <button onClick={() => navigate('/')}>Home</button>
-          <button onClick={() => navigate('/employee-form')}>New Employee</button>
-          <button onClick={() => navigate('/employee-list')}>Employee List</button>
+          <button onClick={() => handleNavigation('/')}>Home</button>
+          <button onClick={() => handleNavigation('/employee-form')}>New Employee</button>
+          <button onClick={() => handleNavigation('/employee-list')}>Employee List</button>
         </nav>
       </header>
-      <Routes>
-        <Route
-          path="/employee-form"
-          element={
-            <EmployeeForm
-              handleFormSubmit={handleFormSubmit}
-              saveData={() => saveData(employees)}
-            />
-          }
-        />
-        <Route path="/employee-list" element={<EmployeeList employees={employees} />} />
-        <Route path="/employees/:id" element={<EmployeeDetails employees={employees} />} />
-      </Routes>
+      <div ref={contentRef}>
+        <Routes>
+          <Route
+            path="/employee-form"
+            element={
+              <EmployeeForm
+                handleFormSubmit={handleFormSubmit}
+              />
+            }
+          />
+          <Route path="/employee-list" element={<EmployeeList employees={employees} />} />
+          <Route path="/employees/:id" element={<EmployeeDetails employees={employees} />} />
+        </Routes>
+      </div>
     </div>
   );
 }

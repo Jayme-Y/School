@@ -8,44 +8,44 @@
   padding: 20px;
   background-color: #f9f9f9;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 10px;
   max-width: 600px;
   margin: 20px auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .employee-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    font-family: Arial, sans-serif;
-    font-size: 1rem;
-    color: rgb(0, 0, 0);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  color: rgb(0, 0, 0);
 }
 
 .employee-list-title {
-    font-family: Arial, sans-serif;
-    font-size: 1.5rem;
-    color: rgb(0, 0, 0);
-    text-align: center;
-    margin-bottom: 20px;
+  font-family: Arial, sans-serif;
+  font-size: 1.5rem;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.employee-list h2 {
-    font-family: Arial, sans-serif;
-    font-size: 1.5rem;
-    color: rgb(0, 0, 0);
+.employee-list-item {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
 }
 
-.employee-list ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+.employee-list-item:last-child {
+  border-bottom: none;
 }
 
-.employee-list li {
-    padding: 10px 0;
+.employee-link {
+  text-decoration: none;
+  color: #084f63;
+  transition: color 0.3s ease;
 }
 
-.employee-list li:last-child {
-    border-bottom: none;
+.employee-link:hover {
+  color: #0f5b36;
 }

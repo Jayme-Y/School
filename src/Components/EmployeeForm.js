@@ -22,8 +22,7 @@ class EmployeeForm extends React.Component {
   hitSubmit = (e) => {
     e.preventDefault();
     const { name, email, title, dept } = this.state;
-    this.props.handleFormSubmit({ name, email, title, dept }); 
-    this.props.saveData(); 
+    this.props.handleFormSubmit({ name, email, title, dept });
     this.setState({
       name: '',
       email: '',
@@ -35,8 +34,9 @@ class EmployeeForm extends React.Component {
   render() {
     return (
       <form className="employee-form" onSubmit={this.hitSubmit}>
+        <h2>Enter New Employee</h2>
         <div>
-          <label>Name: </label>
+          <label><strong>Name:</strong> </label>
           <input
             type="text"
             name="name"
@@ -45,7 +45,7 @@ class EmployeeForm extends React.Component {
           />
         </div>
         <div>
-          <label>Email: </label>
+          <label><strong>Email:</strong> </label>
           <input
             type="email"
             name="email"
@@ -54,7 +54,7 @@ class EmployeeForm extends React.Component {
           />
         </div>
         <div>
-          <label>Title: </label>
+          <label><strong>Title:</strong> </label>
           <input
             type="text"
             name="title"
@@ -63,7 +63,7 @@ class EmployeeForm extends React.Component {
           />
         </div>
         <div>
-          <label>Dept: </label>
+          <label><strong>Dept:</strong> </label>
           <input
             type="text"
             name="dept"
